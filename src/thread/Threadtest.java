@@ -56,6 +56,7 @@ class Mythread3 extends Thread {
 
 
  class Mythread4 implements Runnable{
+	
 	public void run() {
 		int i = 1;
 		while(true) {
@@ -97,6 +98,7 @@ class Mythread3 extends Thread {
 				  throw new tooLongException();
 			  }
 			}
+			
 			  finally {
 			  
 			 System.out.println("Renter your name");
@@ -117,21 +119,26 @@ class Mythread3 extends Thread {
 public class Threadtest {
 
 	public static void main(String[] args) {
+//		
+//		try {
+//		
+//		new CheckValidation();
+//		}
+//		catch(Exception e){
+//			System.out.println(e);
+//			
+//		}
+		Mythread4 a = new Mythread4();
 		
-		try {
+		Thread x = new Thread(a);
+	
 		
-		new CheckValidation();
-		}
-		catch(Exception e){
-			System.out.println(e);
-			
-		}
-//		Mythread4 a = new Mythread4();
-//		
-//		Thread x = new Thread(a);
-//		x.start();
-//		
-//		
+		System.out.println(x.getState());
+		
+	
+		
+		
+		
 //		
 //		int i = 1;
 //		while(true) {
@@ -146,7 +153,7 @@ public class Threadtest {
 //			System.out.println(e);
 //			}
 //		}
-	
+//	
 //	Mythread3 t = new Mythread3("Hello thread 1");
 //	t.start();
 //	t.interrupt();
