@@ -43,12 +43,12 @@ class Mythread3 extends Thread {
 		int i = 1;
 		while(true) {
 			System.out.println(i);
-			try {
-			Thread.sleep(100);
-			}
-			catch(Exception e) {
-				System.out.println(e);
-			}
+//			try {
+//			Thread.sleep(100);
+//			}
+//			catch(Exception e) {
+//				System.out.println(e);
+//			}
 			i++;
 		}
 	}
@@ -128,12 +128,13 @@ public class Threadtest {
 //			System.out.println(e);
 //			
 //		}
-		Mythread4 a = new Mythread4();
-		
-		Thread x = new Thread(a);
-	
-		
-		System.out.println(x.getState());
+//		Mythread4 a = new Mythread4();
+//		
+//		Thread x = new Thread(a);
+//		x.start();
+//		x.interrupt();
+//		
+//		System.out.println(x.getState());
 		
 	
 		
@@ -154,16 +155,35 @@ public class Threadtest {
 //			}
 //		}
 //	
-//	Mythread3 t = new Mythread3("Hello thread 1");
-//	t.start();
-//	t.interrupt();
-//		System.out.println("Id " +  t.getId());
-//		System.out.println("Name " + t.getName());
-//		System.out.println("Priority " + t.getPriority());
-//		t.start();
-//		System.out.println("State " + t.getState());
-//		System.out.println("Alive " + t.isAlive());
+	Mythread3 t = new Mythread3("Hello thread 1");
+	
+//	t.setDaemon(true);
+	t.start();
+	t.yield();
+	
+//	try {
+//	t.sleep(100);
+//		
+//	}
+//	catch(Exception e ) {
+//		System.out.println(e);
+//	}
+	
+	
+	Threadtest a = new Threadtest();
+	int i = 1;
+	while(true) {
+		System.out.println(i + "Main");
 		
+//		try {
+//		Thread.sleep(100);
+//		}
+//		catch(Exception e) {
+//			System.out.println(e);
+//		}
+		i++;
+	}
+	
 //		Thread t = new Thread(new Myrun());
 //		Mythread2 x = new Mythread2();
 //		Thread th = new Thread(x);
