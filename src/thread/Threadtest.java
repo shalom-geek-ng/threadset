@@ -115,11 +115,51 @@ class Mythread3 extends Thread {
 	 
  }
 
+ 
+ class myData{
+		public void display(String str) {
+			for(int i = 1; i<=str.length();i++) {
+				System.out.println(str.charAt(i));
+			}
+		}
+	}
+
+	class Threadsync1 extends Thread{
+		myData r;
+		Threadsync1(myData r){
+			this.r = r;
+			
+		}
+		public void run() {
+			System.out.println("Hello world");
+		}
+	}
+
+
+	class Threadsync2 extends Thread{
+		myData r;
+		Threadsync2(myData r){
+			this.r = r;
+			
+		}
+		public void run() {
+			System.out.println("Welcome all");
+		}
+	}
+
+ 
+ 
 // Enter your name and age if lenght of name is too long and also if age is too much
 public class Threadtest {
 
 	public static void main(String[] args) {
-//		
+
+		myData d = new myData();
+		Threadsync2 r = new Threadsync2(d);
+		Threadsync1 a = new Threadsync1(d);
+		r.start();
+		a.start();
+		
 //		try {
 //		
 //		new CheckValidation();
