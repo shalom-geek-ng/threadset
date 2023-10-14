@@ -154,8 +154,15 @@ class Mythread3 extends Thread {
  
 	
 	 class NewData{
-		public int add(int x, int y) {
-			return x+y;
+		synchronized public void add(int x, int y) {
+			System.out.println(x+y);
+			try {
+				Thread.sleep(1000);
+			}
+			catch(Exception e) {
+				
+			}
+		
 		}
 		
 	}
@@ -166,7 +173,7 @@ class Mythread3 extends Thread {
 			this.n = n;
 		}
 		public void run() {
-			System.out.println(n.add(3,9) + "sjs"); ;
+			n.add(18,10) ;
 		}
 	}
 	
@@ -176,7 +183,7 @@ class Mythread3 extends Thread {
 			this.n = n;
 		}
 		public void run() {
-			System.out.println(n.add(12,9) + " mnp"); ;
+			n.add(12, 19);;
 		}
 	}
  
@@ -191,16 +198,18 @@ public class Threadtest {
 		NewThreadset2 ts2 = new NewThreadset2(ds);
 		Threadsync2 r = new Threadsync2(d);
 		Threadsync1 a = new Threadsync1(d);
-		try {
-			ts.start();
-			ts.join();
-			Thread.sleep(10000);
-			ts2.start();
-	
-		}
-		catch(Exception e) {
-			System.out.println(e);
-		}
+		ts.start();
+		ts2.start();
+//		try {
+//			ts.start();
+//			ts.join();
+//			Thread.sleep(10000);
+//			ts2.start();
+//	
+//		}
+//		catch(Exception e) {
+//			System.out.println(e);
+//		}
 	
 //		r.start();
 //		
