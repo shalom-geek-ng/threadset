@@ -199,23 +199,27 @@ class Sync2 extends Thread{
 			this.name = name;
 			System.out.println(" Welcome " + name);
 			try {
-			Thread.sleep(3000);
+			Thread.sleep(100);
 		}
 			catch(Exception e) {
 				
 			}
+			
+			
 		}
 		synchronized void withdraw(String name, int amount) {
 			this.name = name;
 			this.amount = amount;
 			System.out.println(" Mr/mrs " + name + " is withdrawing " + amount);
 			try {
-				Thread.sleep(3000);
+				Thread.sleep(100);
 			}
 				catch(Exception e) {
 					
 				}
 		}
+		
+		
 		
 		
 	}
@@ -227,15 +231,15 @@ class Sync2 extends Thread{
 		int amount;
 		
 	
-		Customer1(Atm a, String name, int amount){
+		Customer1(Atm a){
 			
 			this.a = a;
-			this.name = name;
-			this.amount = amount;
+			
 			
 			Scanner input = new Scanner(System.in);
 			System.out.println("Enter your name " + " and your amount");
 			name = input.nextLine();
+			amount = input.nextInt();
 		}
 		public void run() {
 			a.checkBalance(name);
@@ -250,14 +254,14 @@ class Sync2 extends Thread{
 		String name;
 		int amount;
 		
-		Customer2(Atm a, String name, int amount){
+		Customer2(Atm a){
 			this.a = a;
-			this.name = name;
-			this.amount = amount;
+			
 			
 			Scanner input = new Scanner(System.in);
 			System.out.println("Enter your name " + " and your amount");
 			name = input.nextLine();
+			amount = input.nextInt();
 		}
 		public void run() {
 			a.checkBalance(name);
@@ -278,8 +282,8 @@ public class Threadtest {
 		NewThreadset1 ts = new NewThreadset1(ds);
 		NewThreadset2 ts2 = new NewThreadset2(ds);
 		Atm a = new Atm();
-		Customer1 c = new Customer1(a,"Shalom",1000);
-		Customer2 c2 = new Customer2(a,"mason",2000);
+		Customer1 c = new Customer1(a);
+		Customer2 c2 = new Customer2(a);
 		c.start();
 		c2.start();
 
