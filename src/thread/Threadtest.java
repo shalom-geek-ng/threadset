@@ -152,6 +152,33 @@ class Mythread3 extends Thread {
 	}
 
  
+	
+	 class NewData{
+		public int add(int x, int y) {
+			return x+y;
+		}
+		
+	}
+	
+	class NewThreadset1 extends Thread{
+		NewData n;
+		NewThreadset1(NewData n){
+			this.n = n;
+		}
+		public void run() {
+			System.out.println(n.add(3,9) + "sjs"); ;
+		}
+	}
+	
+	class NewThreadset2 extends Thread{
+		NewData n;
+		NewThreadset2(NewData n){
+			this.n = n;
+		}
+		public void run() {
+			System.out.println(n.add(12,9) + " mnp"); ;
+		}
+	}
  
 // Enter your name and age if lenght of name is too long and also if age is too much
 public class Threadtest {
@@ -159,11 +186,25 @@ public class Threadtest {
 	public static void main(String[] args) {
 
 		myData d = new myData();
+		NewData ds = new NewData();
+		NewThreadset1 ts = new NewThreadset1(ds);
+		NewThreadset2 ts2 = new NewThreadset2(ds);
 		Threadsync2 r = new Threadsync2(d);
 		Threadsync1 a = new Threadsync1(d);
-		r.start();
-		
-		a.start();
+		try {
+			ts.start();
+			ts.join();
+			Thread.sleep(10000);
+			ts2.start();
+	
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
+	
+//		r.start();
+//		
+//		a.start();
 		
 //		try {
 //		
