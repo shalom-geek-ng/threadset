@@ -196,31 +196,25 @@ class Sync2 extends Thread{
 		
 		
 		synchronized void checkBalance(String name) {
-			try {
-				Thread.sleep(100);
-			}
-				catch(Exception e) {
-					
-				}
-			try {
+		
 			this.name = name;
-			System.out.println(" Welcome " + name);
-			}
-			catch(Exception e) {
-				System.out.println(e);
-			}
 			
+	
+		
+			System.out.println(" Welcome " + name);
 			
 		}
 		synchronized void withdraw(String name, int amount) {
+		
+			this.name = name;
+			this.amount = amount;
+			
 			try {
-				Thread.sleep(100);
+				Thread.sleep(1000);
 			}
 				catch(Exception e) {
 					
 				}
-			this.name = name;
-			this.amount = amount;
 			System.out.println(" Mr/mrs " + name + " is withdrawing " + amount);
 		
 		}
@@ -260,7 +254,7 @@ class Sync2 extends Thread{
 		String name;
 		int amount;
 		
-		Customer2(Atm a){
+		 Customer2(Atm a){
 			this.a = a;
 			
 			
@@ -290,16 +284,10 @@ public class Threadtest {
 		Atm a = new Atm();
 		Customer1 c = new Customer1(a);
 		Customer2 c2 = new Customer2(a);
-		
-		try {
 		c.start();
-		c.join();
-		Thread.sleep(1000);
+		
 		c2.start();
-		}
-		catch(Exception e) {
-			System.out.println(e);
-		}
+
 		
 //		s.start();
 //		s2.start();
