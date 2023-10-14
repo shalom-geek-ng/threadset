@@ -196,27 +196,29 @@ class Sync2 extends Thread{
 		
 		
 		synchronized void checkBalance(String name) {
-			this.name = name;
-			System.out.println(" Welcome " + name);
-			try {
-			Thread.sleep(100);
-		}
-			catch(Exception e) {
-				
-			}
-			
-			
-		}
-		synchronized void withdraw(String name, int amount) {
-			this.name = name;
-			this.amount = amount;
-			System.out.println(" Mr/mrs " + name + " is withdrawing " + amount);
 			try {
 				Thread.sleep(100);
 			}
 				catch(Exception e) {
 					
 				}
+			this.name = name;
+			System.out.println(" Welcome " + name);
+	
+			
+			
+		}
+		synchronized void withdraw(String name, int amount) {
+			try {
+				Thread.sleep(100);
+			}
+				catch(Exception e) {
+					
+				}
+			this.name = name;
+			this.amount = amount;
+			System.out.println(" Mr/mrs " + name + " is withdrawing " + amount);
+		
 		}
 		
 		
@@ -275,18 +277,25 @@ public class Threadtest {
 
 	public static void main(String[] args) {
 
-		Data d = new Data();
-		Sync1 s = new Sync1(d);
-		Sync2 s2 = new Sync2(d);
-		NewData ds = new NewData();
-		NewThreadset1 ts = new NewThreadset1(ds);
-		NewThreadset2 ts2 = new NewThreadset2(ds);
+//		Data d = new Data();
+//		Sync1 s = new Sync1(d);
+//		Sync2 s2 = new Sync2(d);
+//		NewData ds = new NewData();
+//		NewThreadset1 ts = new NewThreadset1(ds);
+//		NewThreadset2 ts2 = new NewThreadset2(ds);
 		Atm a = new Atm();
 		Customer1 c = new Customer1(a);
 		Customer2 c2 = new Customer2(a);
+		
+		try {
 		c.start();
+		c.join();
+		Thread.sleep(1000);
 		c2.start();
-
+		}
+		catch(Exception e) {
+			System.out.println(e);
+		}
 		
 //		s.start();
 //		s2.start();
