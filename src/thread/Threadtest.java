@@ -202,9 +202,13 @@ class Sync2 extends Thread{
 				catch(Exception e) {
 					
 				}
+			try {
 			this.name = name;
 			System.out.println(" Welcome " + name);
-	
+			}
+			catch(Exception e) {
+				System.out.println(e);
+			}
 			
 			
 		}
