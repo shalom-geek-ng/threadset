@@ -188,6 +188,83 @@ class Sync2 extends Thread{
 			n.add(12, 19);;
 		}
 	}
+	
+	
+	class Atm{
+		String name;
+		int amount;
+		
+		
+		synchronized void checkBalance(String name) {
+			this.name = name;
+			System.out.println(" Welcome " + name);
+			try {
+			Thread.sleep(3000);
+		}
+			catch(Exception e) {
+				
+			}
+		}
+		synchronized void withdraw(String name, int amount) {
+			this.name = name;
+			this.amount = amount;
+			System.out.println(" Mr/mrs " + name + " is withdrawing " + amount);
+			try {
+				Thread.sleep(3000);
+			}
+				catch(Exception e) {
+					
+				}
+		}
+		
+		
+	}
+	
+	
+	class Customer1 extends Thread{
+		Atm a;
+		String name;
+		int amount;
+		
+	
+		Customer1(Atm a, String name, int amount){
+			
+			this.a = a;
+			this.name = name;
+			this.amount = amount;
+			
+			Scanner input = new Scanner(System.in);
+			System.out.println("Enter your name " + " and your amount");
+			name = input.nextLine();
+		}
+		public void run() {
+			a.checkBalance(name);
+			a.withdraw(name, amount);
+		}
+		
+	}
+	
+	
+	class Customer2 extends Thread{
+		Atm a;
+		String name;
+		int amount;
+		
+		Customer2(Atm a, String name, int amount){
+			this.a = a;
+			this.name = name;
+			this.amount = amount;
+			
+			Scanner input = new Scanner(System.in);
+			System.out.println("Enter your name " + " and your amount");
+			name = input.nextLine();
+		}
+		public void run() {
+			a.checkBalance(name);
+			a.withdraw(name, amount);
+		}
+		
+	}
  
 // Enter your name and age if lenght of name is too long and also if age is too much
 public class Threadtest {
@@ -200,10 +277,15 @@ public class Threadtest {
 		NewData ds = new NewData();
 		NewThreadset1 ts = new NewThreadset1(ds);
 		NewThreadset2 ts2 = new NewThreadset2(ds);
+		Atm a = new Atm();
+		Customer1 c = new Customer1(a,"Shalom",1000);
+		Customer2 c2 = new Customer2(a,"mason",2000);
+		c.start();
+		c2.start();
 
 		
-		s.start();
-		s2.start();
+//		s.start();
+//		s2.start();
 //		ts.start();
 //		ts2.start();
 //		try {
