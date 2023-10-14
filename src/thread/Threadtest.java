@@ -116,40 +116,42 @@ class Mythread3 extends Thread {
  }
 
  
- class myData{
-	  public void display(String str)
-	    {
-		  	synchronized(this) {
-	            for(int i=0;i<str.length();i++)
-	            {
-	                 System.out.print(str.charAt(i));
-	            }
-			}
-		}
-	}
-
-	class Threadsync1 extends Thread{
-		myData r;
-		Threadsync1(myData r){
-			this.r = r;
+class Data{
+	
+	synchronized void display(String str) {
+		for(int i = 0; i<str.length(); i++) {
+			System.out.print(str.charAt(i));
 			
 		}
-		public void run() {
-			r.display("Hello world");
+		try {
+			Thread.sleep(1000);
+		}
+		catch(Exception e) {
+			System.out.println(e);
 		}
 	}
+}
 
-
-	class Threadsync2 extends Thread{
-		myData r;
-		Threadsync2(myData r){
-			this.r = r;
-			
-		}
-		public void run() {
-			r.display("Welcome");
-		}
+class Sync1 extends Thread{
+	Data d;
+	Sync1(Data d){
+		this.d = d;
 	}
+	public void run() {
+		d.display("I love ");
+	}
+}
+
+class Sync2 extends Thread{
+	Data d;
+	Sync2(Data d){
+		this.d = d;
+	}
+	public void run() {
+		d.display(" Java");
+	}
+}
+
 
  
 	
@@ -160,7 +162,7 @@ class Mythread3 extends Thread {
 				Thread.sleep(1000);
 			}
 			catch(Exception e) {
-				
+				System.out.println(e);
 			}
 		
 		}
@@ -192,14 +194,18 @@ public class Threadtest {
 
 	public static void main(String[] args) {
 
-		myData d = new myData();
+		Data d = new Data();
+		Sync1 s = new Sync1(d);
+		Sync2 s2 = new Sync2(d);
 		NewData ds = new NewData();
 		NewThreadset1 ts = new NewThreadset1(ds);
 		NewThreadset2 ts2 = new NewThreadset2(ds);
-		Threadsync2 r = new Threadsync2(d);
-		Threadsync1 a = new Threadsync1(d);
-		ts.start();
-		ts2.start();
+
+		
+		s.start();
+		s2.start();
+//		ts.start();
+//		ts2.start();
 //		try {
 //			ts.start();
 //			ts.join();
