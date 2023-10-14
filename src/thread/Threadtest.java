@@ -117,9 +117,13 @@ class Mythread3 extends Thread {
 
  
  class myData{
-		public void display(String str) {
-			for(int i = 1; i<=str.length();i++) {
-				System.out.println(str.charAt(i));
+	  public void display(String str)
+	    {
+		  	synchronized(this) {
+	            for(int i=0;i<str.length();i++)
+	            {
+	                 System.out.print(str.charAt(i));
+	            }
 			}
 		}
 	}
@@ -131,7 +135,7 @@ class Mythread3 extends Thread {
 			
 		}
 		public void run() {
-			System.out.println("Hello world");
+			r.display("Hello world");
 		}
 	}
 
@@ -143,7 +147,7 @@ class Mythread3 extends Thread {
 			
 		}
 		public void run() {
-			System.out.println("Welcome all");
+			r.display("Welcome");
 		}
 	}
 
@@ -158,6 +162,7 @@ public class Threadtest {
 		Threadsync2 r = new Threadsync2(d);
 		Threadsync1 a = new Threadsync1(d);
 		r.start();
+		
 		a.start();
 		
 //		try {
@@ -195,11 +200,11 @@ public class Threadtest {
 //			}
 //		}
 //	
-	Mythread3 t = new Mythread3("Hello thread 1");
+//	Mythread3 t = new Mythread3("Hello thread 1");
 	
 //	t.setDaemon(true);
-	t.start();
-	t.yield();
+//	t.start();
+//	t.yield();
 	
 //	try {
 //	t.sleep(100);
@@ -209,11 +214,11 @@ public class Threadtest {
 //		System.out.println(e);
 //	}
 	
-	
-	Threadtest a = new Threadtest();
-	int i = 1;
-	while(true) {
-		System.out.println(i + "Main");
+//	
+//	Threadtest f = new Threadtest();
+//	int i = 1;
+//	while(true) {
+//		System.out.println(i + "Main");
 		
 //		try {
 //		Thread.sleep(100);
@@ -221,9 +226,9 @@ public class Threadtest {
 //		catch(Exception e) {
 //			System.out.println(e);
 //		}
-		i++;
-	}
-	
+//		i++;
+//	}
+//	
 //		Thread t = new Thread(new Myrun());
 //		Mythread2 x = new Mythread2();
 //		Thread th = new Thread(x);
